@@ -12,40 +12,33 @@ final public class RequestBuilder {
     
     private init() {}
     
-    public func buildUrlRequest(method: Method,
-                                endpoint: String,
-                                parameters: [String: Any]
-                                ) -> URLRequest?
+    public func buildUrlRequest(url: String = "", method: Method) -> URLRequest?
     {
-        let urlComponents = NSURLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = BaseUrl.baseURL
-        urlComponents.path = endpoint
+        guard let downloadUrl = URL(string: url) else { return nil }
         
-        var queryItem: [URLQueryItem] = []
-        let queryParameters = parameters.map({URLQueryItem(name: $0.key, value: $0.value as? String)})
-        queryItem.append(contentsOf: queryParameters)
-        
-        guard let completeUrl = urlComponents.url else { return nil }
-        
-        let URLRequest = URLRequest(url: completeUrl, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 30)
-        
+        var URLRequest = URLRequest(
+            url: downloadUrl,
+            cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
+            timeoutInterval: 30
+        )
+        URLRequest.httpMethod = method.rawValue
         return URLRequest
     }
     
-    public func request(method: Method,
-                        endpoint: String,
-                        parameters: [String: Any],
+    public func request(method: Method = .get,
+                        parameters: String = "",
+                        urlForDownload: String = "",
                         success: @escaping (Data) -> Void,
                         failure: @escaping (_ errorMessage: String,
                                             _ errorType: String,
                                             _ errorField: String,
                                             _ responseError: Error) -> Void)
     {
+        let urlComplete = "\(BaseUrl.baseURL)?q=\(parameters)&apiKey=\(BaseUrl.apiKey)"
+        
         guard let URLRequest = buildUrlRequest(
-            method: method,
-            endpoint: endpoint,
-            parameters: parameters
+            url: urlForDownload != "" ? urlForDownload : urlComplete,
+            method: .get
         ) else { return }
         
         URLSession.shared.dataTask(with: URLRequest) { data, response, error in

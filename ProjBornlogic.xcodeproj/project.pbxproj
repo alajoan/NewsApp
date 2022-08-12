@@ -28,6 +28,14 @@
 		7CDB68A428A547B3001B118C /* SummaryMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDB68A228A547B3001B118C /* SummaryMainView.swift */; };
 		7CDB68AA28A5C684001B118C /* SummaryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDB68A928A5C684001B118C /* SummaryPresenter.swift */; };
 		7CDB68AB28A5C684001B118C /* SummaryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDB68A928A5C684001B118C /* SummaryPresenter.swift */; };
+		7CDB68B428A6A1A6001B118C /* DSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDB68B328A6A1A6001B118C /* DSLabel.swift */; };
+		7CDB68B528A6A1A6001B118C /* DSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDB68B328A6A1A6001B118C /* DSLabel.swift */; };
+		7CDB68B828A6AB23001B118C /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDB68B728A6AB23001B118C /* UIImageExtensions.swift */; };
+		7CDB68B928A6AB23001B118C /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDB68B728A6AB23001B118C /* UIImageExtensions.swift */; };
+		7CDB68BC28A6DB56001B118C /* SummaryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDB68BB28A6DB56001B118C /* SummaryService.swift */; };
+		7CDB68BD28A6DB56001B118C /* SummaryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDB68BB28A6DB56001B118C /* SummaryService.swift */; };
+		7CDB68C228A6DD18001B118C /* SummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDB68C128A6DD18001B118C /* SummaryModel.swift */; };
+		7CDB68C328A6DD18001B118C /* SummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDB68C128A6DD18001B118C /* SummaryModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +74,10 @@
 		7CDB689F28A5457D001B118C /* SummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryTableViewCell.swift; sourceTree = "<group>"; };
 		7CDB68A228A547B3001B118C /* SummaryMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryMainView.swift; sourceTree = "<group>"; };
 		7CDB68A928A5C684001B118C /* SummaryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPresenter.swift; sourceTree = "<group>"; };
+		7CDB68B328A6A1A6001B118C /* DSLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSLabel.swift; sourceTree = "<group>"; };
+		7CDB68B728A6AB23001B118C /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
+		7CDB68BB28A6DB56001B118C /* SummaryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryService.swift; sourceTree = "<group>"; };
+		7CDB68C128A6DD18001B118C /* SummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,10 +128,12 @@
 		7CDB685728A54118001B118C /* ProjBornlogic */ = {
 			isa = PBXGroup;
 			children = (
-				7CDB686628A54119001B118C /* Info.plist */,
-				7CDB688B28A542A8001B118C /* Features */,
-				7CDB688928A5425A001B118C /* Services */,
+				7CDB68B628A6AB14001B118C /* Extensions */,
 				7CDB688828A5422B001B118C /* Resources */,
+				7CDB688928A5425A001B118C /* Services */,
+				7CDB688B28A542A8001B118C /* Features */,
+				7CDB68AC28A68531001B118C /* DesignSystem */,
+				7CDB686628A54119001B118C /* Info.plist */,
 			);
 			path = ProjBornlogic;
 			sourceTree = "<group>";
@@ -155,6 +169,7 @@
 		7CDB688928A5425A001B118C /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				7CDB68BA28A6DB44001B118C /* Summary */,
 				7CDB688D28A542E7001B118C /* RequestBuilder.swift */,
 				7CDB689028A542FC001B118C /* URLResources.swift */,
 				7CDB689328A54307001B118C /* Method.swift */,
@@ -212,6 +227,7 @@
 		7CDB689828A543FF001B118C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7CDB68C128A6DD18001B118C /* SummaryModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -235,6 +251,30 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		7CDB68AC28A68531001B118C /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				7CDB68B328A6A1A6001B118C /* DSLabel.swift */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		7CDB68B628A6AB14001B118C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7CDB68B728A6AB23001B118C /* UIImageExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7CDB68BA28A6DB44001B118C /* Summary */ = {
+			isa = PBXGroup;
+			children = (
+				7CDB68BB28A6DB56001B118C /* SummaryService.swift */,
+			);
+			path = Summary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,13 +408,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CDB685928A54118001B118C /* AppDelegate.swift in Sources */,
+				7CDB68B828A6AB23001B118C /* UIImageExtensions.swift in Sources */,
+				7CDB68C228A6DD18001B118C /* SummaryModel.swift in Sources */,
 				7CDB689428A54307001B118C /* Method.swift in Sources */,
 				7CDB685B28A54118001B118C /* SceneDelegate.swift in Sources */,
+				7CDB68B428A6A1A6001B118C /* DSLabel.swift in Sources */,
 				7CDB68A328A547B3001B118C /* SummaryMainView.swift in Sources */,
 				7CDB688E28A542E7001B118C /* RequestBuilder.swift in Sources */,
 				7CDB689D28A5455A001B118C /* SummaryViewController.swift in Sources */,
 				7CDB68A028A5457D001B118C /* SummaryTableViewCell.swift in Sources */,
 				7CDB68AA28A5C684001B118C /* SummaryPresenter.swift in Sources */,
+				7CDB68BC28A6DB56001B118C /* SummaryService.swift in Sources */,
 				7CDB689128A542FC001B118C /* URLResources.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,10 +430,14 @@
 				7CDB689528A54307001B118C /* Method.swift in Sources */,
 				7CDB687028A54119001B118C /* ProjBornlogicTests.swift in Sources */,
 				7CDB68AB28A5C684001B118C /* SummaryPresenter.swift in Sources */,
+				7CDB68B528A6A1A6001B118C /* DSLabel.swift in Sources */,
 				7CDB689228A542FC001B118C /* URLResources.swift in Sources */,
 				7CDB688F28A542E7001B118C /* RequestBuilder.swift in Sources */,
 				7CDB68A128A5457D001B118C /* SummaryTableViewCell.swift in Sources */,
+				7CDB68B928A6AB23001B118C /* UIImageExtensions.swift in Sources */,
+				7CDB68C328A6DD18001B118C /* SummaryModel.swift in Sources */,
 				7CDB689E28A5455A001B118C /* SummaryViewController.swift in Sources */,
+				7CDB68BD28A6DB56001B118C /* SummaryService.swift in Sources */,
 				7CDB68A428A547B3001B118C /* SummaryMainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

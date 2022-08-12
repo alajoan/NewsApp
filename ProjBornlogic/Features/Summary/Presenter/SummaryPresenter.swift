@@ -9,6 +9,21 @@ import Foundation
 import UIKit
 
 final class SummaryPresenter {
+    
+    let service = SummaryService()
+    
+    func getArticles(with parameters: String) {
+        service.getArticles(with: parameters) { result in
+            switch result {
+            case .success(let articles):
+                print(articles)
+                break
+            case .failure(_):
+                return
+            }
+        }
+    }
+    
     func setImages() -> [UIImage] {
         var images: [UIImage] = []
         images.append(UIImage(named: "Image1") ?? UIImage())

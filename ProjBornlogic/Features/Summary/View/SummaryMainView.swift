@@ -11,7 +11,7 @@ import UIKit
 final class SummaryMainView: UIView {
     lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = .systemMint
 //        if #available(iOS 15.0, *) {
 //            tableView.sectionHeaderTopPadding = 0
 //        }
@@ -20,10 +20,8 @@ final class SummaryMainView: UIView {
             forCellReuseIdentifier: SummaryTableViewCell.identifier
         )
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.separatorStyle = .singleLine
+        tableView.separatorStyle = .none
         tableView.preservesSuperviewLayoutMargins = false
-        tableView.separatorInset = UIEdgeInsets.zero
-        tableView.layoutMargins = UIEdgeInsets.zero
         return tableView
     }()
     

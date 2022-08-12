@@ -31,6 +31,7 @@ final class SummaryViewController: UIViewController {
         titles = presenter.setTexts()
         descriptions = presenter.setDescriptions()
         view.backgroundColor = .cyan
+        presenter.getArticles(with: "Android")
     }
 }
 
@@ -84,6 +85,6 @@ extension SummaryViewController: UITableViewDataSource {
 
 extension SummaryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 180
     }
 }
