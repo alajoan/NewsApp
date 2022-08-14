@@ -9,7 +9,15 @@ import Foundation
 import UIKit
 
 final class SummaryMainView: UIView {
-    lazy var tableView: UITableView = {
+    
+    private lazy var textField: UISearchTextField = {
+        let textfield = UISearchTextField()
+        textfield.translatesAutoresizingMaskIntoConstraints = false
+        textfield.placeholder = "Search for news"
+        return textfield
+    }()
+    
+    private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(
             SummaryTableViewCell.self,
@@ -31,6 +39,7 @@ final class SummaryMainView: UIView {
         self.init()
         tableView.delegate = delegate
         tableView.dataSource = delegate
+        textField.delegate = delegate
     }
     
     @available(*, unavailable)
@@ -43,11 +52,27 @@ final class SummaryMainView: UIView {
 //MARK: - Layout
 extension SummaryMainView {
     private func layoutViews() {
+        addSubview(textField)
         addSubview(tableView)
         NSLayoutConstraint.activate([
+            
+            //MARK: - TextField Constraints
+            textField.topAnchor.constraint(
+                equalTo: topAnchor,
+                constant: 5
+            ),
+            textField.leadingAnchor.constraint(
+                equalTo: leadingAnchor,
+                constant: 5
+            ),
+            textField.trailingAnchor.constraint(
+                equalTo: trailingAnchor,
+                constant: -5
+            ),
+            
             // MARK: - tableViewConstraints
             tableView.topAnchor.constraint(
-                equalTo: topAnchor,
+                equalTo: textField.bottomAnchor,
                 constant: 5
             ),
             tableView.leadingAnchor.constraint(
@@ -63,5 +88,17 @@ extension SummaryMainView {
                 constant: -5
             )
         ])
+    }
+}
+
+//MARK: - Functions
+extension SummaryMainView {
+    func reloadTableView() {
+        tableView.reloadData()
+    }
+    
+    func getTextfieldValue() -> String {
+        guard let text = textField.text else { return "" }
+        return text
     }
 }

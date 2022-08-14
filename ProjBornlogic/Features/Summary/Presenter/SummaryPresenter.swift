@@ -28,8 +28,8 @@ final class SummaryPresenter {
     
     func getArticles(with parameters: String) {
         self.view?.didStartLoading()
+        articles = []
         service.getArticles(with: parameters) { [weak self] result in
-            self?.view?.didStopLoading()
             switch result {
             case .success(let root):
                 self?.articles = root.articles
@@ -45,6 +45,11 @@ final class SummaryPresenter {
     
     func getArticleImages() {
         guard let articles = self.articles else { return }
+        articleImages = []
+        DispatchQueue.main.async {
+            self.view?.didStopLoading()
+        }
+        
         articles.forEach { article in
             guard let articleUrlImage = article.urlToImage else { return }
             service.downloadArticleImages(from: articleUrlImage) { [weak self] result in

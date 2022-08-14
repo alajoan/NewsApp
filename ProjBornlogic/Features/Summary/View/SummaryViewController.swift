@@ -19,11 +19,13 @@ final class SummaryViewController: UIViewController {
         return presenter
     }()
     
+    private var spinner: Spinner?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         layoutViews()
         view.backgroundColor = .white
-        presenter.getArticles(with: "Apple")
+        spinner = Spinner(superView: view)
     }
 }
 
@@ -86,17 +88,20 @@ extension SummaryViewController: UITableViewDelegate {
 }
 
 extension SummaryViewController: SummaryPresenterDelegate {
-    func didStartLoading() {
-        return
-    }
+    func didStartLoading() { self.spinner?.startLoading() }
     
-    func didStopLoading() {
-        return
-    }
+    func didStopLoading() { self.spinner?.stopLoading() }
     
     func reloadTableView() {
         DispatchQueue.main.async {
-            self.mainView.tableView.reloadData()
+            self.mainView.reloadTableView()
         }
+    }
+}
+
+extension SummaryViewController: UISearchTextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        presenter.getArticles(with: mainView.getTextfieldValue())
+        return true;
     }
 }
