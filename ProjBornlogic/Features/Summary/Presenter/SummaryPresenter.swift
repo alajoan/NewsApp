@@ -8,15 +8,34 @@
 import Foundation
 import UIKit
 
+protocol SummaryPresenterDelegate {
+    func didStartLoading()
+    func didStopLoading()
+    func reloadTableView()
+}
+
 final class SummaryPresenter {
-    
     let service = SummaryService()
     
+    var view: SummaryPresenterDelegate?
+    var articleImages: [UIImage] = []
+    var articles: [Articles]?
+    var numberOfRows = 0
+    
+    init(view: SummaryPresenterDelegate) {
+        self.view = view
+    }
+    
     func getArticles(with parameters: String) {
-        service.getArticles(with: parameters) { result in
+        self.view?.didStartLoading()
+        service.getArticles(with: parameters) { [weak self] result in
+            self?.view?.didStopLoading()
             switch result {
-            case .success(let articles):
-                print(articles)
+            case .success(let root):
+                self?.articles = root.articles
+                self?.numberOfRows = root.articles.count
+                self?.view?.reloadTableView()
+                self?.getArticleImages()
                 break
             case .failure(_):
                 return
@@ -24,27 +43,36 @@ final class SummaryPresenter {
         }
     }
     
-    func setImages() -> [UIImage] {
-        var images: [UIImage] = []
-        images.append(UIImage(named: "Image1") ?? UIImage())
-        images.append(UIImage(named: "Image2") ?? UIImage())
-        images.append(UIImage(named: "Image3") ?? UIImage())
-        return images
+    func getArticleImages() {
+        guard let articles = self.articles else { return }
+        articles.forEach { article in
+            guard let articleUrlImage = article.urlToImage else { return }
+            service.downloadArticleImages(from: articleUrlImage) { [weak self] result in
+                switch result {
+                case .success(let image):
+                    guard let convertedImage = UIImage(data: image, scale: 0.5) else { return }
+                    self?.articleImages.append(convertedImage)
+                    self?.view?.reloadTableView()
+                    break
+                case .failure(_):
+                    return
+                }
+            }
+        }
     }
     
-    func setTexts() -> [String] {
-        var texts: [String] = []
-        texts.append("Why I'm trading the Galaxy Watch 4 Classic for the Watch 5 Pro")
-        texts.append("Pico 4 Pro specs appear right after Oculus Quest 2's price hike")
-        texts.append("Apple reportedly wants podcast deals that can lead to TV shows")
-        return texts
+    func getArticleImage(at index: Int) -> UIImage {
+        guard let articleImages = articleImages[safe: index] else { return UIImage() }
+        return articleImages
     }
     
-    func setDescriptions() -> [String] {
-        var descriptions: [String] = []
-        descriptions.append("The Galaxy Watch 5 Pro presents an interesting case for those deciding whether they should upgrade. Here's why I've decided to ditch the Watch 4 Classic for Samsung's most expensive smartwatch.")
-        descriptions.append("Meta may have the VR market cornered with the Oculus Quest but a leak of new images and specs for ByteDance's Pico 4 Pro looks like it's ready to create some serious competition.")
-        descriptions.append("Apple is no stranger to basing TV shows on podcasts, but it now appears eager to snap up that content as quickly as possible. Bloombergsources claim Apple has signed a deal with Suave producer Futuro Studios that will fund podcasts in return for the first cha…")
-        return descriptions
+    func getArticleTitle(at index: Int) -> String {
+        guard let articleTitle = articles?[index].title else { return "" }
+        return articleTitle
+    }
+    
+    func getArticleDescription(at index: Int) -> String {
+        guard let articleDescription = articles?[index].description else { return "" }
+        return articleDescription
     }
 }

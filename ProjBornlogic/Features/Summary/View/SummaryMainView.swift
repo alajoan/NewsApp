@@ -11,10 +11,6 @@ import UIKit
 final class SummaryMainView: UIView {
     lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .systemMint
-//        if #available(iOS 15.0, *) {
-//            tableView.sectionHeaderTopPadding = 0
-//        }
         tableView.register(
             SummaryTableViewCell.self,
             forCellReuseIdentifier: SummaryTableViewCell.identifier
@@ -27,7 +23,6 @@ final class SummaryMainView: UIView {
     
     init() {
         super.init(frame: .zero)
-        backgroundColor = .red
         layoutViews()
     }
     

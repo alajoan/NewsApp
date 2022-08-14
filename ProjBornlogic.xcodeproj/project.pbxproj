@@ -36,6 +36,8 @@
 		7CDB68BD28A6DB56001B118C /* SummaryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDB68BB28A6DB56001B118C /* SummaryService.swift */; };
 		7CDB68C228A6DD18001B118C /* SummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDB68C128A6DD18001B118C /* SummaryModel.swift */; };
 		7CDB68C328A6DD18001B118C /* SummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDB68C128A6DD18001B118C /* SummaryModel.swift */; };
+		7CDB68C528A861E0001B118C /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDB68C428A861E0001B118C /* ArrayExtensions.swift */; };
+		7CDB68C628A861E0001B118C /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDB68C428A861E0001B118C /* ArrayExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,7 @@
 		7CDB68B728A6AB23001B118C /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		7CDB68BB28A6DB56001B118C /* SummaryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryService.swift; sourceTree = "<group>"; };
 		7CDB68C128A6DD18001B118C /* SummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryModel.swift; sourceTree = "<group>"; };
+		7CDB68C428A861E0001B118C /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				7CDB68B728A6AB23001B118C /* UIImageExtensions.swift */,
+				7CDB68C428A861E0001B118C /* ArrayExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -416,6 +420,7 @@
 				7CDB68A328A547B3001B118C /* SummaryMainView.swift in Sources */,
 				7CDB688E28A542E7001B118C /* RequestBuilder.swift in Sources */,
 				7CDB689D28A5455A001B118C /* SummaryViewController.swift in Sources */,
+				7CDB68C528A861E0001B118C /* ArrayExtensions.swift in Sources */,
 				7CDB68A028A5457D001B118C /* SummaryTableViewCell.swift in Sources */,
 				7CDB68AA28A5C684001B118C /* SummaryPresenter.swift in Sources */,
 				7CDB68BC28A6DB56001B118C /* SummaryService.swift in Sources */,
@@ -427,6 +432,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CDB68C628A861E0001B118C /* ArrayExtensions.swift in Sources */,
 				7CDB689528A54307001B118C /* Method.swift in Sources */,
 				7CDB687028A54119001B118C /* ProjBornlogicTests.swift in Sources */,
 				7CDB68AB28A5C684001B118C /* SummaryPresenter.swift in Sources */,

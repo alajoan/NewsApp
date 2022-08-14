@@ -27,7 +27,8 @@ final class SummaryTableViewCell: UITableViewCell {
     private lazy var summaryImage: UIImageView = {
         var image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.sizeToFit()
+        image.clipsToBounds = true
+        image.contentMode = .scaleAspectFill
         image.makeRoundCorners(byRadius: 10)
         return image
     }()
@@ -67,37 +68,44 @@ extension SummaryTableViewCell {
 
 extension SummaryTableViewCell {
     
+    private func makeShadows() {
+        backgroundColor = .clear
+        holder.layer.masksToBounds = false
+        holder.layer.shadowOpacity = 0.13
+        holder.layer.shadowRadius = 4
+        holder.layer.shadowOffset = CGSize(width: 0, height: 0)
+        holder.layer.shadowColor = UIColor.black.cgColor
+        
+        holder.backgroundColor = .white
+        holder.layer.cornerRadius = 8
+    }
+    
     private func layoutView() {
-       
-        
-        let shadowPath = UIBezierPath(rect: self.bounds)
-        self.layer.masksToBounds = false
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOffset = CGSize(width: 0, height: 0.5)
-        self.layer.shadowOpacity = 0.2
-        self.layer.shadowPath = shadowPath.cgPath
-        
-        selectionStyle = .none
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 50, left: 10, bottom: 50, right: 10))
-        contentView.backgroundColor = .white
-        contentView.addSubview(summaryTitle)
-        contentView.addSubview(summaryImage)
-        contentView.addSubview(summaryDescription)
+        makeShadows()
+        contentView.addSubview(holder)
+        holder.addSubview(summaryTitle)
+        holder.addSubview(summaryImage)
+        holder.addSubview(summaryDescription)
 
         NSLayoutConstraint.activate([
+            holder.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            holder.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            holder.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            holder.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
+            
             //MARK: - summaryImageConstraints
             summaryImage.heightAnchor.constraint(equalToConstant: 132),
             summaryImage.widthAnchor.constraint(equalToConstant: 118),
-            summaryImage.centerYAnchor.constraint(equalTo: centerYAnchor),
+            summaryImage.centerYAnchor.constraint(equalTo: holder.centerYAnchor),
             summaryImage.trailingAnchor.constraint(
-                equalTo: trailingAnchor,
+                equalTo: holder.trailingAnchor,
                 constant: -10
             ),
             
             
             //MARK: - summaryTitleConstraints
             summaryTitle.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
+                equalTo: holder.leadingAnchor,
                 constant: 10
             ),
             summaryTitle.trailingAnchor.constraint(
@@ -105,7 +113,7 @@ extension SummaryTableViewCell {
                 constant: -10
             ),
             summaryTitle.topAnchor.constraint(
-                equalTo: topAnchor,
+                equalTo: holder.topAnchor,
                 constant: 10
             ),
             
@@ -115,7 +123,7 @@ extension SummaryTableViewCell {
                 constant: 0
             ),
             summaryDescription.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
+                equalTo: holder.leadingAnchor,
                 constant: 10
             ),
             summaryDescription.trailingAnchor.constraint(
@@ -123,9 +131,10 @@ extension SummaryTableViewCell {
                 constant: -10
             ),
             summaryDescription.bottomAnchor.constraint(
-                equalTo: bottomAnchor,
+                equalTo: holder.bottomAnchor,
                 constant: -10
-            )
+            ),
+            summaryDescription.heightAnchor.constraint(greaterThanOrEqualToConstant: 70)
         ])
     }
 }

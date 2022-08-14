@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 final public class SummaryService {
     public func getArticles(
@@ -26,7 +27,14 @@ final public class SummaryService {
         }
     }
     
-    public func downloadArticleImages() {
-        
+    public func downloadArticleImages(
+        from url: String,
+        result: @escaping (Result<Data, Error>) -> Void
+    ) {
+        RequestBuilder.shared.request(urlForDownload: url) { response in
+            result(.success(response))
+        } failure: { errorMessage, errorType, errorField, responseError in
+            result(.failure(responseError))
+        }
     }
 }
