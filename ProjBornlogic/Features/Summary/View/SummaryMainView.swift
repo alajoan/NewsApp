@@ -63,11 +63,11 @@ extension SummaryMainView {
             ),
             textField.leadingAnchor.constraint(
                 equalTo: leadingAnchor,
-                constant: 5
+                constant: 20
             ),
             textField.trailingAnchor.constraint(
                 equalTo: trailingAnchor,
-                constant: -5
+                constant: -20
             ),
             
             // MARK: - tableViewConstraints
