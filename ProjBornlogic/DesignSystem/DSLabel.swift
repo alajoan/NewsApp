@@ -12,6 +12,7 @@ public class DSLabel: UILabel {
         case title
         case descriptionText
         case fullDescriptionText
+        case date
     }
     
     var labelType: LabelType!
@@ -54,6 +55,9 @@ extension DSLabel {
             break
         case .fullDescriptionText:
             self.font = UIFont.systemFont(ofSize: 17, weight: .thin)
+            break
+        case .date:
+            self.font = UIFont.systemFont(ofSize: 12, weight: .ultraLight)
             break
         default:
             self.font = UIFont.systemFont(ofSize: 14, weight: .regular)

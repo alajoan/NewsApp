@@ -40,6 +40,10 @@
 		7CDB68C628A861E0001B118C /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDB68C428A861E0001B118C /* ArrayExtensions.swift */; };
 		7CDB68C828A95942001B118C /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDB68C728A95942001B118C /* Spinner.swift */; };
 		7CDB68C928A95942001B118C /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDB68C728A95942001B118C /* Spinner.swift */; };
+		BC6F05F228AA8CCA00D0A4A9 /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6F05F128AA8CCA00D0A4A9 /* Details.swift */; };
+		BC6F05F428AA8E6E00D0A4A9 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6F05F328AA8E6E00D0A4A9 /* DetailsViewController.swift */; };
+		BC6F05F628AA8E8B00D0A4A9 /* DetailsMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6F05F528AA8E8B00D0A4A9 /* DetailsMainView.swift */; };
+		BC6F05F728AA8E8B00D0A4A9 /* DetailsMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6F05F528AA8E8B00D0A4A9 /* DetailsMainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +88,9 @@
 		7CDB68C128A6DD18001B118C /* SummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryModel.swift; sourceTree = "<group>"; };
 		7CDB68C428A861E0001B118C /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		7CDB68C728A95942001B118C /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
+		BC6F05F128AA8CCA00D0A4A9 /* Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
+		BC6F05F328AA8E6E00D0A4A9 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		BC6F05F528AA8E8B00D0A4A9 /* DetailsMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsMainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,20 +203,9 @@
 		7CDB688B28A542A8001B118C /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				7CDB688C28A542AF001B118C /* Detail */,
-				7CDB688A28A54261001B118C /* Summary */,
+				BC6F05EC28AA844800D0A4A9 /* News */,
 			);
 			path = Features;
-			sourceTree = "<group>";
-		};
-		7CDB688C28A542AF001B118C /* Detail */ = {
-			isa = PBXGroup;
-			children = (
-				7CDB689B28A54413001B118C /* Model */,
-				7CDB689A28A5440A001B118C /* View */,
-				7CDB689928A54406001B118C /* Presenter */,
-			);
-			path = Detail;
 			sourceTree = "<group>";
 		};
 		7CDB689628A543F2001B118C /* Presenter */ = {
@@ -238,27 +234,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		7CDB689928A54406001B118C /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		7CDB689A28A5440A001B118C /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		7CDB689B28A54413001B118C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		7CDB68AC28A68531001B118C /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +258,49 @@
 				7CDB68BB28A6DB56001B118C /* SummaryService.swift */,
 			);
 			path = Summary;
+			sourceTree = "<group>";
+		};
+		BC6F05EC28AA844800D0A4A9 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				BC6F05ED28AA847F00D0A4A9 /* Details */,
+				7CDB688A28A54261001B118C /* Summary */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		BC6F05ED28AA847F00D0A4A9 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				BC6F05F028AA84A100D0A4A9 /* Model */,
+				BC6F05EF28AA849A00D0A4A9 /* View */,
+				BC6F05EE28AA849000D0A4A9 /* Presenter */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		BC6F05EE28AA849000D0A4A9 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BC6F05EF28AA849A00D0A4A9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BC6F05F328AA8E6E00D0A4A9 /* DetailsViewController.swift */,
+				BC6F05F528AA8E8B00D0A4A9 /* DetailsMainView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BC6F05F028AA84A100D0A4A9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BC6F05F128AA8CCA00D0A4A9 /* Details.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -424,11 +442,14 @@
 				7CDB68B428A6A1A6001B118C /* DSLabel.swift in Sources */,
 				7CDB68A328A547B3001B118C /* SummaryMainView.swift in Sources */,
 				7CDB688E28A542E7001B118C /* RequestBuilder.swift in Sources */,
+				BC6F05F428AA8E6E00D0A4A9 /* DetailsViewController.swift in Sources */,
 				7CDB689D28A5455A001B118C /* SummaryViewController.swift in Sources */,
 				7CDB68C528A861E0001B118C /* ArrayExtensions.swift in Sources */,
+				BC6F05F628AA8E8B00D0A4A9 /* DetailsMainView.swift in Sources */,
 				7CDB68A028A5457D001B118C /* SummaryTableViewCell.swift in Sources */,
 				7CDB68AA28A5C684001B118C /* SummaryPresenter.swift in Sources */,
 				7CDB68BC28A6DB56001B118C /* SummaryService.swift in Sources */,
+				BC6F05F228AA8CCA00D0A4A9 /* Details.swift in Sources */,
 				7CDB689128A542FC001B118C /* URLResources.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,6 +464,7 @@
 				7CDB68C928A95942001B118C /* Spinner.swift in Sources */,
 				7CDB68AB28A5C684001B118C /* SummaryPresenter.swift in Sources */,
 				7CDB68B528A6A1A6001B118C /* DSLabel.swift in Sources */,
+				BC6F05F728AA8E8B00D0A4A9 /* DetailsMainView.swift in Sources */,
 				7CDB689228A542FC001B118C /* URLResources.swift in Sources */,
 				7CDB688F28A542E7001B118C /* RequestBuilder.swift in Sources */,
 				7CDB68A128A5457D001B118C /* SummaryTableViewCell.swift in Sources */,

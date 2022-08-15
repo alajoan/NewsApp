@@ -41,7 +41,7 @@ final public class RequestBuilder {
             method: .get
         ) else { return }
         
-        URLSession.shared.dataTask(with: URLRequest) { [weak self] data, response, error in
+        URLSession.shared.dataTask(with: URLRequest) { data, response, error in
             let response = response as? HTTPURLResponse
             let status = response?.statusCode
             
