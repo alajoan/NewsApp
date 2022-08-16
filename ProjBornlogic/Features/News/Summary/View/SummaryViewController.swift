@@ -85,6 +85,11 @@ extension SummaryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 180
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let nextViewController = DetailsViewController(data: self.presenter.getDetailData(at: indexPath.row))
+        self.navigationController?.pushViewController(nextViewController, animated: true)
+    }
 }
 
 extension SummaryViewController: SummaryPresenterDelegate {

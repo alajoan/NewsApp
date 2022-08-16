@@ -22,7 +22,7 @@ final class DetailsMainView: UIView {
         return view
     }()
     
-    private lazy var image: UIImageView = {
+    private lazy var imageView: UIImageView = {
         var image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
@@ -31,6 +31,7 @@ final class DetailsMainView: UIView {
     private lazy var title: DSLabel = {
         var title = DSLabel(labelType: .title)
         title.translatesAutoresizingMaskIntoConstraints = false
+        title.numberOfLines = 0
         return title
     }()
     
@@ -40,14 +41,16 @@ final class DetailsMainView: UIView {
         return publishedDate
     }()
     
-    private lazy var fullDescription: DSLabel = {
+    private lazy var content: DSLabel = {
         var fullDescription = DSLabel(labelType: .fullDescriptionText)
+        fullDescription.numberOfLines = 0
         fullDescription.translatesAutoresizingMaskIntoConstraints = false
         return fullDescription
     }()
     
     init() {
         super.init(frame: .zero)
+        backgroundColor = .white
         layoutViews()
     }
     
@@ -61,10 +64,10 @@ extension DetailsMainView {
     private func layoutViews() {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubview(image)
+        contentView.addSubview(imageView)
         contentView.addSubview(title)
         contentView.addSubview(publishedAt)
-        contentView.addSubview(fullDescription)
+        contentView.addSubview(content)
         NSLayoutConstraint.activate([
             
             //MARK: - ScrollView Constraints
@@ -80,17 +83,16 @@ extension DetailsMainView {
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             
             //MARK: - ImageView Constraints
-            image.topAnchor.constraint(
-                equalTo: contentView.topAnchor,
-                constant: 5
+            imageView.topAnchor.constraint(
+                equalTo: contentView.topAnchor
             ),
-            image.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            image.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            image.heightAnchor.constraint(greaterThanOrEqualToConstant: 200),
+            imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: 200),
             
             //MARK: - title Constraints
             title.topAnchor.constraint(
-                equalTo: image.bottomAnchor,
+                equalTo: imageView.bottomAnchor,
                 constant: 0
             ),
             title.leadingAnchor.constraint(
@@ -103,9 +105,45 @@ extension DetailsMainView {
             ),
             
             //MARK: - publishedAt Constraints
+            publishedAt.topAnchor.constraint(
+                equalTo: title.bottomAnchor,
+                constant: 5
+            ),
+            publishedAt.leadingAnchor.constraint(
+                equalTo: contentView.leadingAnchor,
+                constant: 5
+            ),
+            publishedAt.trailingAnchor.constraint(
+                equalTo: contentView.trailingAnchor,
+                constant: -5
+            ),
             
             //MARK: - fullDescription Constraints
-            
-                    ])
+            content.topAnchor.constraint(
+                equalTo: publishedAt.bottomAnchor,
+                constant: 10
+            ),
+            content.leadingAnchor.constraint(
+                equalTo: contentView.leadingAnchor,
+                constant: 10
+            ),
+            content.trailingAnchor.constraint(
+                equalTo: contentView.trailingAnchor,
+                constant: -10
+            ),
+            content.bottomAnchor.constraint(
+                equalTo: contentView.bottomAnchor,
+                constant: -10
+            )
+        ])
+    }
+}
+
+extension DetailsMainView {
+    func setupViewData(title: String, content: String, image: UIImage, publishedAt: String) {
+        self.publishedAt.text = publishedAt
+        self.imageView.image = image
+        self.content.text = content
+        self.title.text = title
     }
 }

@@ -80,4 +80,25 @@ final class SummaryPresenter {
         guard let articleDescription = articles?[index].description else { return "" }
         return articleDescription
     }
+    
+    func getDetailData(at index: Int) -> Details {
+        guard
+            let publishedAt = articles?[index].publishedAt,
+            let content = articles?[index].content
+        else {
+            return Details(
+                image: UIImage(),
+                publishedAt: "",
+                content: "",
+                title: ""
+            )
+        }
+        
+        return Details(
+            image: getArticleImage(at: index),
+            publishedAt: publishedAt,
+            content: content,
+            title: getArticleTitle(at: index)
+        )
+    }
 }
