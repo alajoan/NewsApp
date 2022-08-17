@@ -50,6 +50,38 @@
             endingLineNumber = "17"
             landmarkName = "downloadArticleHTML(from:result:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E9F7C5EB-ABED-4A11-A037-36F277D93B58 - 88b46265794a0953"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Foundation.Data) -&gt; () in ProjBornlogic.DetailService.downloadArticleHTML(from: Swift.String, result: (Swift.Result&lt;Swift.String, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "ProjBornlogic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user226597/Documents/GitHub/ProjBornlogic/ProjBornlogic/Services/Details/DetailService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "180">
+               </Location>
+               <Location
+                  uuid = "E9F7C5EB-ABED-4A11-A037-36F277D93B58 - 528875636f3ac9bc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Foundation.Data) -&gt; () in ProjBornlogicTests.DetailService.downloadArticleHTML(from: Swift.String, result: (Swift.Result&lt;Swift.String, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "ProjBornlogicTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user226597/Documents/GitHub/ProjBornlogic/ProjBornlogic/Services/Details/DetailService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "180">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

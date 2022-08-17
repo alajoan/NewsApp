@@ -32,8 +32,9 @@ final class SummaryPresenter {
         service.getArticles(with: parameters) { [weak self] result in
             switch result {
             case .success(let root):
+                guard let articleCounts = root.articles?.count else { return }
                 self?.articles = root.articles
-                self?.numberOfRows = root.articles.count
+                self?.numberOfRows = articleCounts
                 self?.view?.reloadTableView()
                 self?.getArticleImages()
                 break
