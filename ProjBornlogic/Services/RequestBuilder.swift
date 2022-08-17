@@ -34,7 +34,8 @@ final public class RequestBuilder {
                                             _ errorField: String,
                                             _ responseError: Error) -> Void)
     {
-        let urlComplete = "\(BaseUrl.baseURL)?q=\(parameters)&apiKey=\(BaseUrl.apiKey)"
+        let cleanParameters = parameters.replacingOccurrences(of: " ", with: "")
+        let urlComplete = "\(BaseUrl.baseURL)?q=\(cleanParameters)&apiKey=\(BaseUrl.apiKey)"
         
         guard let URLRequest = buildUrlRequest(
             url: urlForDownload != "" ? urlForDownload : urlComplete,

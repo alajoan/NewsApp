@@ -26,11 +26,27 @@ final class SummaryViewController: UIViewController {
         layoutViews()
         view.backgroundColor = .white
         spinner = Spinner(superView: view)
+        customizeNavBar()
     }
 }
 
 //MARK: - Layout
 extension SummaryViewController {
+    private func customizeNavBar() {
+        let navBar = self.navigationController?.navigationBar
+
+        let standardAppearance = UINavigationBarAppearance()
+        standardAppearance.configureWithOpaqueBackground()
+
+        navBar?.standardAppearance = standardAppearance
+        navBar?.scrollEdgeAppearance = standardAppearance
+        let backBarButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navBar?.backItem?.backBarButtonItem = backBarButton
+        navBar?.prefersLargeTitles = true
+        navBar?.isTranslucent = true
+        navBar?.topItem?.backButtonDisplayMode = .minimal
+        self.title = "Search for news"
+    }
     private func layoutViews() {
         view.addSubview(mainView)
         NSLayoutConstraint.activate([
@@ -69,7 +85,8 @@ extension SummaryViewController: UITableViewDataSource {
         cell.setData(
             title: self.presenter.getArticleTitle(at: indexPath.row),
             image: self.presenter.getArticleImage(at: indexPath.row),
-            description: self.presenter.getArticleDescription(at: indexPath.row)
+            description: self.presenter.getArticleDescription(at: indexPath.row),
+            author: self.presenter.getArticleAuthor(at: indexPath.row)
         )
         return cell
     }

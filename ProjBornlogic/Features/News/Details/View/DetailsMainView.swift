@@ -25,24 +25,27 @@ final class DetailsMainView: UIView {
     private lazy var imageView: UIImageView = {
         var image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
+        image.clipsToBounds = true
+        image.contentMode = .scaleAspectFill
+        image.makeRoundCorners(byRadius: 50)
         return image
     }()
     
     private lazy var title: DSLabel = {
-        var title = DSLabel(labelType: .title)
+        var title = DSLabel(labelType: .detailTitle, alignment: .center)
         title.translatesAutoresizingMaskIntoConstraints = false
         title.numberOfLines = 0
         return title
     }()
     
     private lazy var publishedAt: DSLabel = {
-        var publishedDate = DSLabel(labelType: .date)
+        var publishedDate = DSLabel(labelType: .date, alignment: .center)
         publishedDate.translatesAutoresizingMaskIntoConstraints = false
         return publishedDate
     }()
     
     private lazy var content: DSLabel = {
-        var fullDescription = DSLabel(labelType: .fullDescriptionText)
+        var fullDescription = DSLabel(labelType: .detailText)
         fullDescription.numberOfLines = 0
         fullDescription.translatesAutoresizingMaskIntoConstraints = false
         return fullDescription
@@ -61,13 +64,15 @@ final class DetailsMainView: UIView {
 }
 
 extension DetailsMainView {
+    
     private func layoutViews() {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(imageView)
-        contentView.addSubview(title)
         contentView.addSubview(publishedAt)
         contentView.addSubview(content)
+        contentView.addSubview(title)
+        
         NSLayoutConstraint.activate([
             
             //MARK: - ScrollView Constraints
@@ -84,25 +89,17 @@ extension DetailsMainView {
             
             //MARK: - ImageView Constraints
             imageView.topAnchor.constraint(
-                equalTo: contentView.topAnchor
+                equalTo: topAnchor,
+                constant: 20
             ),
             imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             imageView.heightAnchor.constraint(equalToConstant: 200),
             
             //MARK: - title Constraints
-            title.topAnchor.constraint(
-                equalTo: imageView.bottomAnchor,
-                constant: 0
-            ),
-            title.leadingAnchor.constraint(
-                equalTo: contentView.leadingAnchor,
-                constant: 10
-            ),
-            title.trailingAnchor.constraint(
-                equalTo: contentView.leadingAnchor,
-                constant: 10
-            ),
+            title.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
+            title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             
             //MARK: - publishedAt Constraints
             publishedAt.topAnchor.constraint(
@@ -111,11 +108,11 @@ extension DetailsMainView {
             ),
             publishedAt.leadingAnchor.constraint(
                 equalTo: contentView.leadingAnchor,
-                constant: 5
+                constant: 10
             ),
             publishedAt.trailingAnchor.constraint(
                 equalTo: contentView.trailingAnchor,
-                constant: -5
+                constant: -10
             ),
             
             //MARK: - fullDescription Constraints
@@ -140,8 +137,8 @@ extension DetailsMainView {
 }
 
 extension DetailsMainView {
-    func setupViewData(title: String, content: String, image: UIImage, publishedAt: String) {
-        self.publishedAt.text = publishedAt
+    func setupViewData(title: String, content: String, image: UIImage, publishedAtBy: String){
+        self.publishedAt.text = publishedAtBy
         self.imageView.image = image
         self.content.text = content
         self.title.text = title

@@ -2,7 +2,7 @@
 //  Details.swift
 //  ProjBornlogic
 //
-//  Created by user226597 on 8/15/22.
+//  Created by Jonathan Alajoan Nascimento Rocha on 15/08/22
 //
 
 import Foundation
@@ -13,12 +13,14 @@ struct Details {
     var publishedAt: String
     var content: String
     var title: String
+    var author: String
     
-    init(image: UIImage, publishedAt: String, content: String, title: String) {
+    init(image: UIImage, publishedAt: String, content: String, title: String, author: String) {
         self.image = image
         self.publishedAt = publishedAt
         self.content = content
         self.title = title
+        self.author = author
     }
     
 }

@@ -2,7 +2,7 @@
 //  SummayModelTests.swift
 //  ProjBornlogicTests
 //
-//  Created by Jonathan Alajoan Nascimento Rocha on 16/08/2022
+//  Created by Jonathan Alajoan Nascimento Rocha on 16/08/22
 //
 
 import XCTest
@@ -30,7 +30,7 @@ class SummaryModelTests: XCTestCase {
         let instance = SummaryRoot(articles: articles)
         
         XCTAssertTrue(instance.isArticleValid(), "The article should return true but it returned false")
-    }
+    }	
     
     func testSummaryModel_ShouldPassIfTitleIsValid() {
         let model = Articles(title: "Facebook and apple battle about fortnite")
@@ -44,10 +44,20 @@ class SummaryModelTests: XCTestCase {
         XCTAssertFalse(model.isTitleValid(), "The title test should return false but it returned true")
     }
     
-    func testSummaryModel_isDescriptionValid() {
+    func testSummaryModel_ShouldPassIfDescriptionIsValid() {
         let instance = Articles(description: "the description of an article must have more than 1 character")
         
         XCTAssertTrue(instance.isDescriptionValid(), "The description test should return true but it returned false")
+    }
+    
+    func testSummaryModel_ShouldPassIfDescriptionIsNotValid() {
+        let instance = Articles(description: "xxx")
+        	
+        XCTAssertFalse(instance.isDescriptionValid(), "The description test should return false but it returned true")
+    }
+    
+    func testSummaryModel_ShouldPassIfUrlToImageIsValid() {
+        
     }
     
     

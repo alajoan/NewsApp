@@ -21,19 +21,22 @@ public struct Articles: Decodable {
     var urlToImage: String?
     var publishedAt: String?
     var content: String?
+    var author: String?
     
     init(
         title: String = "",
         description: String = "",
         urlToImage: String = "",
         publishedAt: String = "",
-        content: String = ""
+        content: String = "",
+        author: String = ""
     ) {
         self.title = title
         self.description = description
         self.urlToImage = urlToImage
         self.publishedAt = publishedAt
         self.content = content
+        self.author = author
     }
 }
 

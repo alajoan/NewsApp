@@ -11,7 +11,9 @@ public class DSLabel: UILabel {
     public enum LabelType {
         case title
         case descriptionText
-        case fullDescriptionText
+        case detailText
+        case detailTitle
+        case author
         case date
     }
     
@@ -26,10 +28,11 @@ public class DSLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public convenience init(labelType: LabelType? = .descriptionText, text: String = "") {
+    public convenience init(labelType: LabelType? = .descriptionText, text: String = "", alignment: NSTextAlignment = .left) {
         self.init()
         self.labelType = labelType
         self.text = text
+        self.textAlignment = alignment
         setConfiguration()
     }
 }
@@ -53,11 +56,15 @@ extension DSLabel {
         case .descriptionText:
             self.font = UIFont.systemFont(ofSize: 14, weight: .thin)
             break
-        case .fullDescriptionText:
-            self.font = UIFont.systemFont(ofSize: 17, weight: .thin)
+        case .author:
+            self.font = UIFont.systemFont(ofSize: 12, weight: .thin)
+        case .detailTitle:
+            self.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+        case .detailText:
+            self.font = UIFont.systemFont(ofSize: 20, weight: .regular)
             break
         case .date:
-            self.font = UIFont.systemFont(ofSize: 12, weight: .ultraLight)
+            self.font = UIFont.systemFont(ofSize: 14, weight: .thin)
             break
         default:
             self.font = UIFont.systemFont(ofSize: 14, weight: .regular)

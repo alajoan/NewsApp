@@ -17,14 +17,14 @@ final class SummaryTableViewCell: UITableViewCell {
         return view
     }()
     
-    private lazy var summaryTitle: DSLabel = {
+    private lazy var titleLabel: DSLabel = {
         var title = DSLabel(labelType: .title)
         title.translatesAutoresizingMaskIntoConstraints = false
         title.numberOfLines = 0
         return title
     }()
     
-    private lazy var summaryImage: UIImageView = {
+    private lazy var summaryImageView: UIImageView = {
         var image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
@@ -33,13 +33,20 @@ final class SummaryTableViewCell: UITableViewCell {
         return image
     }()
     
-    private lazy var summaryDescription: DSLabel = {
+    private lazy var descriptionLabel: DSLabel = {
         var description = DSLabel(labelType: .descriptionText)
         description.translatesAutoresizingMaskIntoConstraints = false
         description.numberOfLines = 0
         return description
     }()
-
+    
+    private lazy var authorLabel: DSLabel = {
+        var author = DSLabel(labelType: .author, alignment: .center)
+        author.translatesAutoresizingMaskIntoConstraints = false
+        author.numberOfLines = 0
+        return author
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         layoutView()
@@ -51,18 +58,19 @@ final class SummaryTableViewCell: UITableViewCell {
     }
 
     override func prepareForReuse() {
-        self.summaryImage.image = nil
-        self.summaryTitle.text = nil
-        self.summaryDescription.text = nil
+        self.summaryImageView.image = nil
+        self.titleLabel.text = nil
+        self.descriptionLabel.text = nil
     }
 }
 
 //MARK: - functions
 extension SummaryTableViewCell {
-    func setData(title: String, image: UIImage, description: String) {
-        self.summaryTitle.text = title
-        self.summaryImage.image = image
-        self.summaryDescription.text = description
+    func setData(title: String, image: UIImage, description: String, author: String) {
+        self.titleLabel.text = title
+        self.summaryImageView.image = image
+        self.descriptionLabel.text = description
+        self.authorLabel.text = author
     }
 }
 
@@ -75,66 +83,89 @@ extension SummaryTableViewCell {
         holder.layer.shadowRadius = 4
         holder.layer.shadowOffset = CGSize(width: 0, height: 0)
         holder.layer.shadowColor = UIColor.black.cgColor
-        
         holder.backgroundColor = .white
         holder.layer.cornerRadius = 8
     }
     
     private func layoutView() {
         makeShadows()
+        
+        //MARK: - Subviews
         contentView.addSubview(holder)
-        holder.addSubview(summaryTitle)
-        holder.addSubview(summaryImage)
-        holder.addSubview(summaryDescription)
+        holder.addSubview(titleLabel)
+        holder.addSubview(summaryImageView)
+        holder.addSubview(descriptionLabel)
+        holder.addSubview(authorLabel)
 
         NSLayoutConstraint.activate([
-            holder.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            holder.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            
+            //MARK: - holderConstraints
+            holder.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
+            holder.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
             holder.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             holder.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
             
             //MARK: - summaryImageConstraints
-            summaryImage.heightAnchor.constraint(equalToConstant: 132),
-            summaryImage.widthAnchor.constraint(equalToConstant: 118),
-            summaryImage.centerYAnchor.constraint(equalTo: holder.centerYAnchor),
-            summaryImage.trailingAnchor.constraint(
+            summaryImageView.heightAnchor.constraint(equalToConstant: 110),
+            summaryImageView.widthAnchor.constraint(equalToConstant: 100),
+            summaryImageView.centerYAnchor.constraint(equalTo: holder.centerYAnchor, constant: -15),
+            summaryImageView.trailingAnchor.constraint(
                 equalTo: holder.trailingAnchor,
                 constant: -10
             ),
             
+            //MARK: - AuthorLabelConstraints
+            authorLabel.topAnchor.constraint(
+                equalTo: summaryImageView.bottomAnchor,
+                constant: 5
+            ),
+            authorLabel.bottomAnchor.constraint(
+                equalTo: holder.bottomAnchor,
+                constant: -5
+            ),
+            authorLabel.trailingAnchor.constraint(
+                equalTo: holder.trailingAnchor,
+                constant: -10
+            ),
+            authorLabel.widthAnchor.constraint(greaterThanOrEqualTo: summaryImageView.widthAnchor),
+            authorLabel.leadingAnchor.constraint(
+                equalTo: titleLabel.trailingAnchor,
+                constant: 10
+            ),
+            
             
             //MARK: - summaryTitleConstraints
-            summaryTitle.leadingAnchor.constraint(
+            titleLabel.leadingAnchor.constraint(
                 equalTo: holder.leadingAnchor,
                 constant: 10
             ),
-            summaryTitle.trailingAnchor.constraint(
-                equalTo: summaryImage.leadingAnchor,
+            titleLabel.trailingAnchor.constraint(
+                equalTo: summaryImageView.leadingAnchor,
                 constant: -10
             ),
-            summaryTitle.topAnchor.constraint(
+            titleLabel.topAnchor.constraint(
                 equalTo: holder.topAnchor,
                 constant: 10
             ),
             
             //MARK: - summaryDescriptionConstraints
-            summaryDescription.topAnchor.constraint(
-                equalTo: summaryTitle.bottomAnchor,
+            descriptionLabel.topAnchor.constraint(
+                equalTo: titleLabel.bottomAnchor,
                 constant: 0
             ),
-            summaryDescription.leadingAnchor.constraint(
+            descriptionLabel.leadingAnchor.constraint(
                 equalTo: holder.leadingAnchor,
                 constant: 10
             ),
-            summaryDescription.trailingAnchor.constraint(
-                equalTo: summaryImage.leadingAnchor,
+            descriptionLabel.trailingAnchor.constraint(
+                equalTo: summaryImageView.leadingAnchor,
                 constant: -10
             ),
-            summaryDescription.bottomAnchor.constraint(
+            descriptionLabel.bottomAnchor.constraint(
                 equalTo: holder.bottomAnchor,
                 constant: -10
             ),
-            summaryDescription.heightAnchor.constraint(greaterThanOrEqualToConstant: 70)
+            descriptionLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 70)
         ])
     }
 }

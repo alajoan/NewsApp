@@ -2,7 +2,7 @@
 //  StringExtensions.swift
 //  ProjBornlogic
 //
-//  Created by user226597 on 8/16/22.
+//  Created by Jonathan Alajoan Nascimento Rocha on 16/08/22.
 //
 
 import Foundation

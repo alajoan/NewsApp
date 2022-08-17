@@ -13,7 +13,8 @@ final public class DetailService {
         result: @escaping (Result<String, Error>) -> Void
     ) {
         RequestBuilder.shared.request(urlForDownload: url) { response in
-            let html = String(data: response, encoding: .ascii)
+            let html = String(
+                data: response, encoding: .ascii)
             result(.success(html ?? ""))
 //            do {
 //                try result(.success(NSAttributedString(data: response, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)))

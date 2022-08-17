@@ -12,17 +12,6 @@ final class DetailsPresenter {
     var data: Details?
     let service = DetailService()
     
-    func getHTML() {
-        service.downloadArticleHTML(from: "https://www.theverge.com/2022/8/12/23303095/apple-meta-facebook-ad-sales-subscription") { result in
-            switch result {
-            case .success(let data):
-                print(data.matchingStrings(regex: "<div[^>]*?class='content'[^>]*?>(.*?)</div>"))
-            case .failure(let data):
-                print(data)
-            }
-        }
-    }
-    
     func getDetailTitle() -> String {
         guard let detailTitle = data?.title else { return "" }
         return detailTitle
@@ -33,9 +22,12 @@ final class DetailsPresenter {
         return detailImage
     }
     
-    func getDetailPublishedAt() -> String {
-        guard let detailPublishedAt = data?.publishedAt else { return "" }
-        return detailPublishedAt
+    func getDetailPublishedAtBy() -> String {
+        guard
+            let detailPublishedAt = data?.publishedAt,
+            let author = data?.author
+        else { return "" }
+        return "Article by: \(author) on \(Date.getFormattedDate(string: detailPublishedAt))"
     }
     
     func getDetailContent() -> String {

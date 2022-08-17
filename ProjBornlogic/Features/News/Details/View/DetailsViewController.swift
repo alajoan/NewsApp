@@ -27,10 +27,10 @@ class DetailsViewController: UIViewController {
             title: presenter.getDetailTitle(),
             content: presenter.getDetailContent(),
             image: presenter.getDetailImage(),
-            publishedAt: presenter.getDetailPublishedAt()
+            publishedAtBy: presenter.getDetailPublishedAtBy()
         )
         layoutViews()
-        presenter.getHTML()
+        self.title = "News App"
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

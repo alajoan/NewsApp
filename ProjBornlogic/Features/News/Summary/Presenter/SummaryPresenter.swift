@@ -85,13 +85,16 @@ final class SummaryPresenter {
     func getDetailData(at index: Int) -> Details {
         guard
             let publishedAt = articles?[index].publishedAt,
-            let content = articles?[index].content
+            let content = articles?[index].content,
+            let title = articles?[index].title,
+            let author = articles?[index].author
         else {
             return Details(
                 image: UIImage(),
                 publishedAt: "",
                 content: "",
-                title: ""
+                title: "",
+                author: ""
             )
         }
         
@@ -99,7 +102,13 @@ final class SummaryPresenter {
             image: getArticleImage(at: index),
             publishedAt: publishedAt,
             content: content,
-            title: getArticleTitle(at: index)
+            title: title,
+            author: author
         )
+    }
+    
+    func getArticleAuthor(at index: Int) -> String {
+        guard let articleAuthor = articles?[index].author else { return "" }
+        return "Author: \(articleAuthor)"
     }
 }
