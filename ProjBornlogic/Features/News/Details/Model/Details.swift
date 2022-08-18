@@ -22,6 +22,4 @@ struct Details {
         self.title = title
         self.author = author
     }
-    
 }
-

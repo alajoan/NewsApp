@@ -57,8 +57,43 @@ class SummaryModelTests: XCTestCase {
     }
     
     func testSummaryModel_ShouldPassIfUrlToImageIsValid() {
-        
+        let instance = Articles(urlToImage: "https://dhbiuzu7sx6b3.cloudfront.net/assets/article/2020/08/25/world-of-warcraft-rp-entrega-especial_feature.jpg")
+        XCTAssertTrue(instance.urlToImageValid())
     }
     
+    func testSummaryModel_ShouldPassIfUrlToImageIsNotValid() {
+        let instance = Articles(urlToImage: "https://ak")
+        XCTAssertFalse(instance.urlToImageValid())
+    }
     
+    func testSummaryModel_ShouldPassIfPublishedAtIsValid() {
+        let instance = Articles(publishedAt: "2022-08-18T11:33:00Z")
+        XCTAssertTrue(instance.publishedAtValid())
+    }
+    
+    func testSummaryModel_ShouldPassIfPublishedAtIsNotValid() {
+        let instance = Articles(publishedAt: "12/03/2020")
+        XCTAssertFalse(instance.publishedAtValid())
+    }
+    
+    func testSummaryModel_ShouldPassIfContentIsValid() {
+        let instance = Articles(content: "This is an example of how a atleast an article content should be")
+        XCTAssertTrue(instance.contentValid())
+    }
+    
+    func testSummaryModel_ShouldPassIfContentIsNotValid() {
+        let instance = Articles(content: "this")
+        XCTAssertFalse(instance.contentValid())
+    }
+    
+    func testSummaryModel_ShouldPassIfAuthorIsValid() {
+        let instance = Articles(author: "Mark Hunt")
+        XCTAssertTrue(instance.authorValid())
+    }
+    
+    func testSummaryModel_ShouldPassIfAuthorIsNotValid() {
+        let instance = Articles(author: "xxx")
+        XCTAssertFalse(instance.authorValid())
+    }
+       
 }

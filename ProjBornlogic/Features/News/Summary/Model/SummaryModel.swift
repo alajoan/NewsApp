@@ -47,6 +47,7 @@ extension SummaryRoot {
     }
 }
 
+//MARK: - Validations
 extension Articles {
     func isTitleValid() -> Bool {
         guard let title = title else { return false }
@@ -60,16 +61,31 @@ extension Articles {
     
     func urlToImageValid() -> Bool {
         guard let url = urlToImage else { return false }
-        return !url.isEmpty && url.count > 1 && url.contains("https://")
+        let urlRegEx = "^(https?://)?(www\\.)?([-a-z0-9]{1,63}\\.)*?[a-z0-9][-a-z0-9]{0,61}[a-z0-9]\\.[a-z]{2,6}(/[-\\w@\\+\\.~#\\?&/=%]*)?$"
+            let urlTest = NSPredicate(format:"SELF MATCHES %@", urlRegEx)
+            let result = urlTest.evaluate(with: url)
+        return !url.isEmpty && result
     }
     
     func publishedAtValid() -> Bool {
         guard let publishedAt = publishedAt else { return false }
-        return !publishedAt.isEmpty && publishedAt.count > 8
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        
+        return !publishedAt.isEmpty && (dateFormatterGet.date(from: publishedAt) != nil)
     }
     
     func contentValid() -> Bool {
         guard let content = content else { return false }
-        return !content.isEmpty && content.count > 1
+        return !content.isEmpty && content.count > 10
+    }
+    
+    func authorValid() -> Bool {
+        guard let author = author else { return false }
+        guard author.count > 7, author.count < 18 else { return false }
+        let urlRegex = "^(([^ ]?)(^[a-zA-Z].*[a-zA-Z]$)([^ ]?))$"
+        let predicateTest = NSPredicate(format: "SELF MATCHES %@", urlRegex)
+        
+        return !author.isEmpty && predicateTest.evaluate(with: author)
     }
 }
