@@ -26,6 +26,7 @@ final class SummaryMainView: UIView {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         tableView.preservesSuperviewLayoutMargins = false
+        
         return tableView
     }()
     

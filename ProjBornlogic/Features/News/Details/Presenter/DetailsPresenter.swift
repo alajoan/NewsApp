@@ -10,7 +10,6 @@ import UIKit
 
 final class DetailsPresenter {
     var data: Details?
-    let service = DetailService()
     
     func getDetailTitle() -> String {
         guard let detailTitle = data?.title else { return "" }
@@ -32,6 +31,7 @@ final class DetailsPresenter {
     
     func getDetailContent() -> String {
         guard let detailContent = data?.content else { return "" }
-        return detailContent
+        let finalString = detailContent.components(separatedBy: "[")
+        return finalString[0]
     }
 }

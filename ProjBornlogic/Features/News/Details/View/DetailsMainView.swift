@@ -27,7 +27,7 @@ final class DetailsMainView: UIView {
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFill
-        image.makeRoundCorners(byRadius: 50)
+        image.makeRoundCorners(byRadius: 30)
         return image
     }()
     

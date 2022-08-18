@@ -15,7 +15,7 @@ extension Date {
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "dd/MM/YYYY"
         
-        guard let date = dateFormatterGet.date(from: "2018-02-01T19:10:04+00:00") else { return "" }
+        guard let date = dateFormatterGet.date(from: string) else { return "" }
         return dateFormatterPrint.string(from: date);
     }
 }

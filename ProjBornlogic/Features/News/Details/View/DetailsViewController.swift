@@ -30,16 +30,16 @@ class DetailsViewController: UIViewController {
             publishedAtBy: presenter.getDetailPublishedAtBy()
         )
         layoutViews()
-        self.title = "News App"
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
     }
     
-    convenience init(data: Details) {
+    convenience init(data: Details, title: String) {
         self.init(nibName: nil, bundle: nil)
         self.presenter.data = data
+        self.title = title
     }
     
     @available(*, unavailable)

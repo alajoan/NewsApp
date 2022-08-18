@@ -95,6 +95,7 @@ extension SummaryViewController: UITableViewDataSource {
         cell.contentView.layer.masksToBounds = true
         let radius = cell.contentView.layer.cornerRadius
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath
+        cell.selectionStyle = .none
     }
 }
 
@@ -104,7 +105,7 @@ extension SummaryViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let nextViewController = DetailsViewController(data: self.presenter.getDetailData(at: indexPath.row))
+        let nextViewController = DetailsViewController(data: self.presenter.getDetailData(at: indexPath.row), title: "\(mainView.getTextfieldValue()) News")
         self.navigationController?.pushViewController(nextViewController, animated: true)
     }
 }
